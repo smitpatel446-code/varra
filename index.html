@@ -1,600 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VARAA CARES — Hygiene & Cleaning Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --green:#1D9E75;
+  --green-dark:#0F6E56;
+  --green-light:#E1F5EE;
+  --green-mid:#9FE1CB;
+  --dark:#0a1a14;
+  --text:#1a1a1a;
+  --muted:#666;
+  --border:rgba(0,0,0,0.09);
+  --white:#fff;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;color:var(--text);background:#fff;overflow-x:hidden;}
 
-<!DOCTYPE html><html lang="zxx"><head>
-        <!-- REQUIRED META TAGS -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+/* ========== NAV ========== */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:rgba(255,255,255,0.9);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(29,158,117,0.15);
+  height:68px;display:flex;align-items:center;
+  padding:0 2.5rem;justify-content:space-between;
+  transition:all 0.3s;
+}
+nav.scrolled{background:rgba(255,255,255,0.97);box-shadow:0 4px 24px rgba(0,0,0,0.06);}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo-icon{width:36px;height:36px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;}
+.nav-logo-icon svg{width:20px;height:20px;fill:#fff;}
+.nav-logo-text{font-size:18px;font-weight:800;color:var(--text);letter-spacing:-0.5px;}
+.nav-logo-text span{color:var(--green);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-size:14px;font-weight:500;color:var(--muted);text-decoration:none;transition:color 0.2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--green);transform:scaleX(0);transition:transform 0.2s;}
+.nav-links a:hover{color:var(--green);}
+.nav-links a:hover::after{transform:scaleX(1);}
+.nav-cta{
+  background:var(--green);color:#fff;border:none;
+  padding:10px 22px;border-radius:100px;
+  font-size:13px;font-weight:600;cursor:pointer;
+  transition:all 0.2s;
+}
+.nav-cta:hover{background:var(--green-dark);transform:translateY(-1px);box-shadow:0 6px 20px rgba(29,158,117,0.3);}
 
-        <!-- FAVICON -->
-        <link rel="icon" type="image/png" href="images/icon.png">
-        <!-- TITLE -->
-        <title>VARAA CARES - Manufacturer of Indoor & Outdoor Cleaning Liquid Solutions</title>
+/* ========== HERO ========== */
+.hero{
+  min-height:100vh;
+  background:linear-gradient(160deg,#f0fdf9 0%,#e8f9f2 40%,#f0fdf9 100%);
+  display:flex;align-items:center;justify-content:center;
+  padding:8rem 2rem 4rem;
+  position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 40%,rgba(29,158,117,0.12) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 40% at 20% 70%,rgba(29,158,117,0.07) 0%,transparent 60%);
+}
+.hero-orbs{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+.orb{
+  position:absolute;border-radius:50%;
+  background:radial-gradient(circle,rgba(29,158,117,0.15),transparent 70%);
+  animation:floatOrb 8s ease-in-out infinite;
+}
+.orb1{width:500px;height:500px;right:-100px;top:-100px;animation-delay:0s;}
+.orb2{width:300px;height:300px;left:-50px;bottom:10%;animation-delay:3s;}
+.orb3{width:200px;height:200px;right:20%;bottom:20%;animation-delay:5s;}
+@keyframes floatOrb{
+  0%,100%{transform:translateY(0) scale(1);}
+  50%{transform:translateY(-30px) scale(1.05);}
+}
+.hero-content{position:relative;z-index:1;text-align:center;max-width:800px;}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(29,158,117,0.1);
+  border:1px solid rgba(29,158,117,0.25);
+  color:var(--green-dark);
+  font-size:12px;font-weight:600;
+  padding:6px 16px;border-radius:100px;
+  margin-bottom:2rem;
+  animation:fadeUp 0.7s ease both;
+}
+.badge-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.8);}}
+.hero h1{
+  font-size:clamp(36px,7vw,72px);
+  font-weight:900;line-height:1.05;
+  letter-spacing:-3px;
+  animation:fadeUp 0.7s ease 0.1s both;
+}
+.hero h1 .line-green{
+  background:linear-gradient(135deg,var(--green),#0F6E56);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{
+  font-size:18px;color:var(--muted);
+  margin:1.5rem auto;max-width:520px;line-height:1.7;
+  animation:fadeUp 0.7s ease 0.2s both;
+}
+.hero-actions{
+  display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
+  margin-top:2.5rem;
+  animation:fadeUp 0.7s ease 0.3s both;
+}
+.btn-primary{
+  background:var(--green);color:#fff;
+  padding:16px 32px;border-radius:100px;
+  font-size:15px;font-weight:600;border:none;cursor:pointer;
+  transition:all 0.25s;
+  box-shadow:0 4px 20px rgba(29,158,117,0.25);
+}
+.btn-primary:hover{background:var(--green-dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(29,158,117,0.35);}
+.btn-outline{
+  background:transparent;color:var(--green);
+  border:1.5px solid rgba(29,158,117,0.4);
+  padding:16px 32px;border-radius:100px;
+  font-size:15px;font-weight:600;cursor:pointer;
+  transition:all 0.25s;
+}
+.btn-outline:hover{background:var(--green-light);border-color:var(--green);transform:translateY(-2px);}
+.hero-pills{
+  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
+  margin-top:3rem;
+  animation:fadeUp 0.7s ease 0.4s both;
+}
+.pill{
+  background:#fff;
+  border:1px solid rgba(29,158,117,0.2);
+  padding:8px 16px;border-radius:100px;
+  font-size:12px;font-weight:500;color:var(--muted);
+  display:flex;align-items:center;gap:6px;
+  box-shadow:0 2px 12px rgba(0,0,0,0.06);
+  transition:transform 0.2s;
+}
+.pill:hover{transform:translateY(-2px);}
+.pill-icon{font-size:14px;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
-        <!-- BOOTSTRAP CSS --> 
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <!-- OWL THEME DEFAULT CSS --> 
-        <link rel="stylesheet" href="css/owl.theme.default.min.css">
-        <!-- OWL CAROUSEL CSS --> 
-        <link rel="stylesheet" href="css/owl.carousel.min.css">
-        <!-- MAGNIFIC POPUP CSS --> 
-        <link rel="stylesheet" href="css/magnific-popup.min.css">
-        <!-- ANIMATE CSS --> 
-        <link rel="stylesheet" href="css/animate.css">
-        <!-- BOXICONS CSS --> 
-        <link rel="stylesheet" href="css/boxicons.min.css">
-        <!-- FONT AWESOME CSS --> 
-        <link rel="stylesheet" href="css/font-awesome.min.css">
-        <!-- Remixicon CSS --> 
-        <link rel="stylesheet" href="css/remixicon.css">   
-        <!-- NICE SELECT CSS -->
-        <link rel="stylesheet" href="css/nice-select.css">
-        <!-- ODOMETER CSS-->
-        <link rel="stylesheet" href="css/odometer.css">
-        <!-- Data Aos CSS-->
-        <link rel="stylesheet" href="css/aos.css">
-        <!-- STYLE CSS -->
-        <link rel="stylesheet" href="css/style.css">
-        <!-- RESPONSIVE CSS -->
-        <link rel="stylesheet" href="css/responsive.css">
-    </head>
+/* ========== STATS ========== */
+.stats{
+  background:var(--dark);
+  padding:4rem 2rem;
+}
+.stats-inner{max-width:960px;margin:0 auto;}
+.stats-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+}
+.stat{
+  padding:2.5rem 2rem;text-align:center;
+  position:relative;
+}
+.stat::after{
+  content:'';position:absolute;right:0;top:20%;bottom:20%;
+  width:1px;background:rgba(255,255,255,0.08);
+}
+.stat:last-child::after{display:none;}
+.stat-num{
+  font-size:48px;font-weight:900;color:var(--green);
+  letter-spacing:-3px;line-height:1;
+  counter-reset:none;
+}
+.stat-label{font-size:13px;color:rgba(255,255,255,0.45);margin-top:8px;font-weight:400;letter-spacing:0.5px;}
 
-    <body class="sticky-header">
+/* ========== SECTION BASE ========== */
+.section{padding:6rem 2rem;}
+.section-inner{max-width:1040px;margin:0 auto;}
+.section-tag{
+  display:inline-block;
+  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--green);margin-bottom:1rem;
+}
+.section-title{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-1.5px;line-height:1.15;}
+.section-sub{font-size:16px;color:var(--muted);margin-top:0.5rem;line-height:1.6;}
+.section-header{margin-bottom:3.5rem;}
+.center{text-align:center;}
 
-        <!-- Start Preloader Area -->
-        <!-- <div class="preloader">
-            <div class="lds-ripple">
-                <div class="loader"></div>
-            </div>
-        </div> -->
-        <!-- End Preloader Area -->
-        
-        <!-- Start Header Area -->  
-        <header class="header main-header">
-            <div id="main-sticky-placeholder"></div>
-            <div class="main-mainmenu">
-                <div class="container-fluid">
-                    <div class="header-navbar">
-                        <div class="header-logo">
-                            <a href="index.html"><img src="images/Varaa-Logo.png" width="200"  alt="Varaa Cares logo"></a>
-                        </div>
-                        <div class="header-main-nav">
-                            <!-- Start Mainmanu Nav -->
-                            <nav class="mainmenu-nav offcanvas" id="mobilemenu-popup">
-                                <div class="d-block d-lg-none">
-                                    <div class="mobile-nav-header">
-                                        <div class="mobile-nav-logo">
-                                            <a href="index.html">
-                                                <img class="light-mode" src="images/Varaa-Logo.png" width="200" alt="Site Logo">
-                                                <img class="dark-mode" src="images/Varaa-Logo.png"  width="200" alt="Site Logo">
-                                            </a>
-                                        </div>
-                                        <button class="mobile-menu-close" data-bs-dismiss="offcanvas"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                                <ul class="mainmenu">
-                                    <li>
-                                        <a class="active" href="javascript:void(0);">Home</a>
-                                    </li>
-                                    <li>
-                                        <a href="#about">About Us</a>
-                                    </li>
-                                    <li>
-                                        <a href="#products">Products</a>
-                                    </li>
-                                    <li>
-                                        <a href="#testimonial">Reviews</a>
-                                    </li>
-                                    <li>
-                                        <a href="#contact">Contact</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                            <!-- End Mainmanu Nav -->
-                        </div>
-                        <div class="header-action">
-                            <ul class="list-unstyled">
-                                <!-- <li class="header-btn">
-                                    <a href="booking.html" class="default-btn icon">
-                                        <i class="bx bx-log-in-circle"></i>Book Now</a>
-                                </li> -->
-                                <li class="mobile-menu-btn sidemenu-btn d-lg-none d-block">
-                                    <button class="btn-wrap btn-dark" data-bs-toggle="offcanvas" data-bs-target="#mobilemenu-popup">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- End Header Area -->
+/* ========== PRODUCTS ========== */
+.products{background:#fcfcfc;}
+.products-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
+}
+.product-card{
+  background:#fff;border:1px solid rgba(0,0,0,0.07);
+  border-radius:24px;overflow:hidden;
+  transition:all 0.3s;cursor:pointer;
+  position:relative;
+}
+.product-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 24px 60px rgba(29,158,117,0.15);
+  border-color:rgba(29,158,117,0.3);
+}
+.product-img{
+  height:200px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:64px;
+  position:relative;overflow:hidden;
+}
+.product-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 50%,rgba(255,255,255,0.6) 100%);
+}
+.pi-green{background:linear-gradient(135deg,#e1f5ee,#9FE1CB);}
+.pi-blue{background:linear-gradient(135deg,#E6F1FB,#85B7EB);}
+.pi-amber{background:linear-gradient(135deg,#FAEEDA,#FAC775);}
+.pi-pink{background:linear-gradient(135deg,#FBEAF0,#ED93B1);}
+.pi-teal{background:linear-gradient(135deg,#E1F5EE,#5DCAA5);}
+.pi-coral{background:linear-gradient(135deg,#FAECE7,#F0997B);}
+.product-body{padding:1.5rem;}
+.product-name{font-size:17px;font-weight:700;letter-spacing:-0.3px;}
+.product-desc{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.6;}
+.product-badge{
+  display:inline-block;margin-top:12px;
+  background:var(--green-light);color:var(--green-dark);
+  font-size:11px;font-weight:600;padding:4px 12px;border-radius:100px;
+}
 
-        <!-- Start Slider Area -->
-        <div><img src="images/varaa-cares-banner.jpg" /></div>
-		<!--<section class="slider-area style-one text-center">
-            <div class="slider-carousel owl-theme owl-carousel owl-dots-none">
-                <div class="slide-item">
-                    <div class="image-layer" style="background-image:url(images/varaa-cares-banner.jpg)"></div>
-                    <div class="auto-container" style="min-height:700px;">
-                        <div class="slider-content-box">
-                            <h2>Manufacturer of Liquid Solutions for Indoor, Outdoor & Personal Hygiene and Cleaning.</h2>
-                            <div class="btn-box">
-                                <a href="#contact" class="default-btn icon"><i class="bx bx-plus-circle"></i>Enquire Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </section>-->
-        <!-- End Slider Area -->
+/* ========== ABOUT ========== */
+.about{background:#fff;}
+.about-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
+}
+.about-lead{
+  font-size:17px;color:var(--muted);line-height:1.75;margin-top:1rem;
+}
+.about-features{
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:2rem;
+}
+.feat{
+  display:flex;align-items:center;gap:10px;
+  padding:12px 16px;
+  background:#f9f9f9;border:1px solid rgba(0,0,0,0.06);
+  border-radius:12px;font-size:13px;font-weight:500;
+  transition:all 0.2s;
+}
+.feat:hover{background:var(--green-light);border-color:rgba(29,158,117,0.3);}
+.feat-icon{font-size:16px;color:var(--green);}
+.about-visual{
+  position:relative;
+}
+.about-card-main{
+  background:linear-gradient(135deg,var(--green),var(--green-dark));
+  border-radius:28px;padding:3rem;color:#fff;
+  position:relative;overflow:hidden;
+}
+.about-card-main::before{
+  content:'';position:absolute;
+  top:-60px;right:-60px;
+  width:280px;height:280px;
+  background:rgba(255,255,255,0.07);
+  border-radius:50%;
+}
+.about-card-main::after{
+  content:'';position:absolute;
+  bottom:-40px;left:-40px;
+  width:180px;height:180px;
+  background:rgba(255,255,255,0.05);
+  border-radius:50%;
+}
+.about-big-num{
+  font-size:90px;font-weight:900;line-height:1;
+  letter-spacing:-5px;color:rgba(255,255,255,0.18);
+  position:relative;z-index:1;
+}
+.about-big-text{
+  font-size:22px;font-weight:700;
+  margin-top:-12px;position:relative;z-index:1;
+}
+.about-big-sub{font-size:14px;opacity:0.7;margin-top:8px;position:relative;z-index:1;line-height:1.5;}
+.location-cards{
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;
+  margin-top:2rem;position:relative;z-index:1;
+}
+.loc-card{
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:16px;padding:1rem;
+}
+.loc-title{font-size:12px;font-weight:600;margin-bottom:4px;opacity:0.9;}
+.loc-text{font-size:11px;opacity:0.65;line-height:1.5;}
+.about-cards-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
+.mini-card{
+  background:#f0fdf9;border:1px solid rgba(29,158,117,0.2);
+  border-radius:16px;padding:1rem;
+  display:flex;flex-direction:column;align-items:flex-start;gap:6px;
+}
+.mini-num{font-size:24px;font-weight:800;color:var(--green);letter-spacing:-1px;}
+.mini-label{font-size:11px;color:var(--muted);}
 
-        <!-- Start Counter Area -->
-        <section class="counter-area pb-20">
-            <div class="container-block-fluid">
-                <div class="row">
-                    <div class="full-col col-lg-3 col-sm-6">
-                        <div class="single-counter" data-aos="fade-up" data-aos-duration="1200">
-                            <i class="bx bx-user-circle"></i>
-                            
-                            <h2>
-                                <span class="odometer" data-count="8">00</span> 
-                                <span class="target">+</span>
-                            </h2>
+/* ========== TESTIMONIALS ========== */
+.testimonials{background:linear-gradient(160deg,#f0fdf9,#e8f9f2);}
+.test-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:16px;margin-top:3rem;
+}
+.test-card{
+  background:#fff;border-radius:20px;padding:1.75rem;
+  border:1px solid rgba(0,0,0,0.07);
+  transition:all 0.3s;
+}
+.test-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,0.09);}
+.stars{color:#f59e0b;font-size:15px;letter-spacing:3px;margin-bottom:12px;}
+.test-quote{
+  font-size:14px;color:var(--muted);line-height:1.7;
+  font-style:italic;
+}
+.test-author{display:flex;align-items:center;gap:12px;margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--border);}
+.avatar{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--green),var(--green-dark));
+  color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;flex-shrink:0;
+}
+.author-name{font-size:14px;font-weight:600;}
+.author-role{font-size:12px;color:var(--muted);}
 
-                            <p>Range of Products</p>
-                        </div>
-                    </div>
+/* ========== INSTAGRAM CTA ========== */
+.insta-cta{
+  background:linear-gradient(135deg,#833ab4,#fd1d1d,#f77737);
+  padding:3rem 2rem;text-align:center;
+}
+.insta-inner{max-width:600px;margin:0 auto;color:#fff;}
+.insta-inner h3{font-size:24px;font-weight:700;margin-bottom:0.5rem;}
+.insta-inner p{opacity:0.85;margin-bottom:1.5rem;}
+.insta-btn{
+  background:#fff;color:#833ab4;
+  border:none;border-radius:100px;
+  padding:14px 28px;font-size:14px;font-weight:700;cursor:pointer;
+  transition:all 0.2s;
+}
+.insta-btn:hover{transform:scale(1.03);}
 
-                    <div class="full-col col-lg-3 col-sm-6">
-                        <div class="single-counter" data-aos="fade-up" data-aos-duration="1600">
-                            <i class="bx bx-check-circle"></i>
-                        
-                            <h2>
-                                <span class="odometer" data-count="5000">00</span> 
-                                <span class="target">+</span>
-                            </h2>
+/* ========== CONTACT ========== */
+.contact-section{background:#fcfcfc;padding:6rem 2rem;}
+.contact-inner{max-width:820px;margin:0 auto;}
+.contact-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:3rem;
+  margin-top:3rem;align-items:start;
+}
+.form-wrap{}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+.form-row.full{grid-template-columns:1fr;}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:12px;}
+.form-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+.form-input,textarea{
+  padding:14px 16px;
+  border:1.5px solid rgba(0,0,0,0.1);
+  border-radius:12px;font-size:14px;
+  outline:none;transition:border 0.2s;
+  font-family:inherit;background:#fff;color:var(--text);
+}
+.form-input:focus,textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(29,158,117,0.1);}
+textarea{resize:vertical;min-height:130px;}
+.submit-btn{
+  width:100%;background:var(--green);color:#fff;
+  border:none;border-radius:14px;
+  padding:16px;font-size:15px;font-weight:600;
+  cursor:pointer;margin-top:8px;
+  transition:all 0.25s;
+  box-shadow:0 4px 20px rgba(29,158,117,0.2);
+}
+.submit-btn:hover{background:var(--green-dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(29,158,117,0.3);}
+.contact-info{display:flex;flex-direction:column;gap:16px;}
+.info-item{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:1.25rem;
+  background:#fff;border:1px solid var(--border);
+  border-radius:16px;
+  transition:all 0.2s;
+}
+.info-item:hover{border-color:rgba(29,158,117,0.3);background:var(--green-light);}
+.info-icon-wrap{
+  width:42px;height:42px;border-radius:12px;
+  background:var(--green-light);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+}
+.info-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600;}
+.info-val{font-size:14px;font-weight:600;margin-top:3px;}
 
-                            <p>Litres Capacity</p>
-                        </div>
-                    </div>
+/* ========== FOOTER ========== */
+footer{background:var(--dark);padding:4rem 2rem 2rem;}
+.footer-inner{max-width:1040px;margin:0 auto;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:3rem;border-bottom:1px solid rgba(255,255,255,0.08);}
+.footer-brand-name{font-size:22px;font-weight:800;color:#fff;letter-spacing:-0.5px;margin-bottom:10px;}
+.footer-brand-name span{color:var(--green);}
+.footer-desc{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;}
+.footer-col-title{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:14px;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:var(--green);}
+.footer-bottom{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:2rem;
+}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.3);}
+.footer-social{display:flex;gap:10px;}
+.social-btn{
+  width:34px;height:34px;border-radius:8px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  display:flex;align-items:center;justify-content:center;
+  text-decoration:none;font-size:14px;color:rgba(255,255,255,0.4);
+  transition:all 0.2s;
+}
+.social-btn:hover{background:var(--green);border-color:var(--green);color:#fff;}
 
-                    <div class="full-col col-lg-3 col-sm-6">
-                        <div class="single-counter" data-aos="fade-up" data-aos-duration="2000">
-                            <i class="bx bx-trophy"></i>
-                            
-                            <h2>
-                                <span class="odometer" data-count="100">00</span> 
-                                <span class="traget">+</span>
-                            </h2>
+/* ========== SCROLL REVEAL ========== */
+.reveal{opacity:0;transform:translateY(28px);transition:all 0.7s ease;}
+.reveal.delay-1{transition-delay:0.1s;}
+.reveal.delay-2{transition-delay:0.2s;}
+.reveal.delay-3{transition-delay:0.3s;}
+.reveal.delay-4{transition-delay:0.4s;}
+.reveal.visible{opacity:1;transform:none;}
 
-                            <p>Pin Code Presence</p>
-                        </div>
-                    </div>
+/* ========== RESPONSIVE ========== */
+@media(max-width:768px){
+  .stats-grid{grid-template-columns:1fr 1fr;}
+  .stat::after{display:none;}
+  .about-grid{grid-template-columns:1fr;}
+  .about-features{grid-template-columns:1fr 1fr;}
+  .contact-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .location-cards{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  .hero h1{letter-spacing:-2px;}
+}
+@media(max-width:480px){
+  .footer-grid{grid-template-columns:1fr;}
+  .about-features{grid-template-columns:1fr;}
+  .footer-bottom{flex-direction:column;gap:1rem;text-align:center;}
+}
 
-                    <div class="full-col col-lg-3 col-sm-6">
-                        <div class="single-counter" data-aos="fade-up" data-aos-duration="2400">
-                            <i class="bx bx-certification"></i>
+/* ========== MARQUEE ========== */
+.marquee-wrap{background:var(--green);padding:14px 0;overflow:hidden;}
+.marquee{display:flex;gap:0;white-space:nowrap;animation:marquee 20s linear infinite;}
+.marquee-item{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:13px;font-weight:600;color:rgba(255,255,255,0.85);
+  padding:0 2.5rem;
+}
+.marquee-dot{width:4px;height:4px;background:rgba(255,255,255,0.5);border-radius:50%;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+</style>
+</head>
+<body>
 
-                            <h2>
-                                <span class="odometer" data-count="20">00</span> 
-                                <span class="traget">+</span>
-                            </h2>
+<!-- NAV -->
+<nav id="mainNav">
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+    </div>
+    <div class="nav-logo-text">VARAA <span>CARES</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Enquire Now</button>
+</nav>
 
-                            <p>Years</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End Counter Area -->
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-orbs">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Trusted Since 2002 · 20+ Years of Excellence
+    </div>
+    <h1>
+      India's Trusted<br>
+      <span class="line-green">Hygiene & Cleaning</span><br>
+      Manufacturer
+    </h1>
+    <p class="hero-sub">Premium liquid solutions for Floor, Toilet, Glass, Dishes & Personal Hygiene. Made with care in Vapi, Gujarat.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+        ✦ Explore Products
+      </button>
+      <button class="btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+        Get a Quote →
+      </button>
+    </div>
+    <div class="hero-pills">
+      <div class="pill"><span class="pill-icon">✅</span> ISO Certified</div>
+      <div class="pill"><span class="pill-icon">📍</span> 100+ Pin Codes</div>
+      <div class="pill"><span class="pill-icon">💧</span> 5000L Daily Capacity</div>
+      <div class="pill"><span class="pill-icon">🛡️</span> Safe Chemicals</div>
+      <div class="pill"><span class="pill-icon">🚚</span> Quick Delivery</div>
+    </div>
+  </div>
+</section>
 
-        <!-- Start Service Area -->
-        <div id="products" class="service-area black-color ptb-20">
-            <div class="container-block-fluid">
-                <div class="section-title" data-aos="fade-up" data-aos-duration="1200">
-                    <h2>VARAA CARES</h2>
-                    <p>Indoor - Outdoor & Personal Hygiene Care Products</p>
-                </div>
-                <div class="row justify-content-center two-columns">
-                    <div class="full-col col-lg-4 col-md-4" data-aos="fade-up" data-aos-duration="1200">
-                        <div class="single-service">
-                            <img src="images/varaa-dish-wash-liquid.jpg" alt="Image" class="service-img">
-                            <div class="service-content">
-                                <h4 class="service-title">
-                                    <a href="#products"> Dish Wash Liquids</a>
-                                </h4>
-                                <a class="arrow" href="#products"><i class="fa fa-long-arrow-right"></i> </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="full-col col-lg-4 col-md-4" data-aos="fade-up" data-aos-duration="1600">
-                        <div class="single-service">
-                            <img src="images/varaa-floor-cleanser.jpg" alt="Image" class="service-img">
-                            <div class="service-content">
-                                <h4 class="service-title">
-                                    <a href="#products"> Floor Cleansers</a>
-                                </h4>
-                                <a class="arrow" href="#products"><i class="fa fa-long-arrow-right"></i> </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="full-col col-lg-4 col-md-4" data-aos="fade-up" data-aos-duration="1200">
-                        <div class="single-service">
-                            <img src="images/varaa-glass-cleanser.jpeg" alt="Image" class="service-img">
-                            <div class="service-content">
-                                <h4 class="service-title">
-                                    <a href="service-details.html"> Glass Cleansers</a>
-                                </h4>
-                                <a class="arrow" href="#products"><i class="fa fa-long-arrow-right"></i> </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="full-col col-lg-4 col-md-4" data-aos="fade-up" data-aos-duration="1600">
-                        <div class="single-service">
-                            <img src="images/varaa-hand-wash.jpeg" alt="Image" class="service-img">
-                            <div class="service-content">
-                                <h4 class="service-title">
-                                    <a href="#products"> Hand Wash Liquids</a>
-                                </h4>
-                                <a class="arrow" href="#products"><i class="fa fa-long-arrow-right"></i> </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="full-col col-lg-4 col-md-4" data-aos="fade-up" data-aos-duration="1200">
-                        <div class="single-service">
-                            <img src="images/varaa-toilet-cleaner.jpg" alt="Image" class="service-img">
-                            <div class="service-content">
-                                <h4 class="service-title">
-                                    <a href="#products"> Toilet Cleansers</a>
-                                     <!-- <a href="service-details.html"> Toilet Cleansers</a> -->
-                                </h4>
-                                <a class="arrow" href="#products"><i class="fa fa-long-arrow-right"></i> </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="full-col col-lg-4 col-md-4" data-aos="fade-up" data-aos-duration="1600">
-                        <div class="single-service">
-                            <img src="images/varaa-phenyle.jpg" alt="Image" class="service-img">
-                            <div class="service-content">
-                                <h4 class="service-title">
-                                    <a href="service-details.html"> White & Black Phenyles</a>
-                                </h4>
-                                <a class="arrow" href="#products"><i class="fa fa-long-arrow-right"></i> </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                <a href="https://www.instagram.com/varaa.cares" target="_blank" class="default-btn icon extra-btn" data-aos="fade-up" data-aos-duration="1200"><i class="ri-service-line"></i>Check our Instagram Profile @Varaa.Cares</a>
-            </div>
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee" id="marquee">
+    <span class="marquee-item">Dish Wash Liquid <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Floor Cleanser <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Glass Cleanser <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Hand Wash Liquid <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Toilet Cleanser <span class="marquee-dot"></span></span>
+    <span class="marquee-item">White &amp; Black Phenyle <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Dish Wash Liquid <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Floor Cleanser <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Glass Cleanser <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Hand Wash Liquid <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Toilet Cleanser <span class="marquee-dot"></span></span>
+    <span class="marquee-item">White &amp; Black Phenyle <span class="marquee-dot"></span></span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stats-grid">
+      <div class="stat"><div class="stat-num" data-target="8">0</div><div class="stat-label">Range of Products</div></div>
+      <div class="stat"><div class="stat-num" data-target="5000">0</div><div class="stat-label">Litres Daily Capacity</div></div>
+      <div class="stat"><div class="stat-num" data-target="100">0</div><div class="stat-label">Pin Code Presence</div></div>
+      <div class="stat"><div class="stat-num" data-target="20">0</div><div class="stat-label">Years of Experience</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="section products" id="products">
+  <div class="section-inner">
+    <div class="section-header center reveal">
+      <div class="section-tag">Our Products</div>
+      <h2 class="section-title">Indoor, Outdoor &amp;<br>Personal Hygiene Solutions</h2>
+      <p class="section-sub">Fresh fragrances · Safe chemicals · Quick delivery across Western India</p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card reveal delay-1">
+        <div class="product-img pi-green">🍽️</div>
+        <div class="product-body">
+          <div class="product-name">Dish Wash Liquid</div>
+          <div class="product-desc">Powerful grease-cutting formula with fresh fragrance. Gentle on hands, tough on grease.</div>
+          <div class="product-badge">Kitchen Care</div>
         </div>
-        <!-- End Service Area -->
-
-        <!-- Start About Us Area -->
-        <section id="about" class="about-style-one pt-20">
-            <div class="container-block-fluid">
-                <div class="row clearfix align-items-center">
-                    <div class="full-col col-lg-4 col-md-12 col-sm-12 content-column">
-                        <div class="content_block_5" data-aos="fade-up" data-aos-duration="1200">
-                            <div class="content-box">
-                                <div class="sec-title">
-                                    <span>Welcome to Varaa Cares</span>
-                                    <h2>Manufacturer of Hygiene and Sanitization Products(Liquid)</h2>
-                                    <div class="title-shape"></div>
-                                </div>
-                                <div class="text">
-                                    <h4>"Protecting surroundings and belongings since 2002."</h4>
-                                    <p>Varaa is one of the leading and Well Known brand in Cosmetic & Personal care products. Company is offering the finest range of hygiene and sanitization products while taking care of your health, skin, body, and mind. Manufactured by Green cross health innovation Stay Clean, Stay Safe!</p>
-                                    <ul class="list clearfix">
-                                        <li><i class="bx bx-diamond"></i>Easy to use</li>
-                                        <li><i class="bx bx-diamond"></i>Fresh Fragrances</li>
-                                        <li><i class="bx bx-diamond"></i>Safe & Secure Chemicals</li>
-                                        <li><i class="bx bx-diamond"></i>Easy to Store</li>
-                                        <li><i class="bx bx-diamond"></i>Easily Available</li>
-                                        <li><i class="bx bx-diamond"></i>Quick Delivery</li>
-                                        <li><i class="bx bx-diamond"></i>20 Years of Experience</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="full-col col-lg-4 col-md-6 col-sm-12 image-column">
-                        <figure class="image-box" data-aos="fade-up" data-aos-duration="1600"><img src="images/varaa-cares-range-of-products.jpg" alt=""></figure>
-                    </div>
-                    <div class="full-col col-lg-4 col-md-6 col-sm-12 inner-column">
-                        <div class="feature-block-one" data-aos="fade-up" data-aos-duration="2000">
-                            <div class="inner-box">
-                                <figure class="image"><img src="images/varaa-team.jpg" alt="Varaa Cares Mumbai Team"></figure>
-                                <div class="text">
-                                    <h4>Mumbai Team</h4>
-                                </div>
-                                <div class="overlay-content">
-                                    <h4>Borivali East</h4>
-                                    <p>17, SHANTHI DWAR CHS-D, Shantivan, Near National Park, Western Express Highway, Borivali East, Mumbai, 400066
-</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="feature-block-one" data-aos="fade-up" data-aos-duration="2400">
-                            <div class="inner-box">
-                                <figure class="image"><img src="images/about-2.jpg" alt=""></figure>
-                                <div class="text">
-                                    <h4>Manufacturing Unit</h4>
-                                </div>
-                                <div class="overlay-content">
-                                    <h4>VAPI, Gujarat</h4>
-                                    <p>Address: Plot no. 57/I, G.I.D.C., Phase 1, Vapi, Gujarat 396195</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End About Us Area  -->
-
-
-
-        <!-- Start Testimonial Area -->
-        <div id="testimonial" class="review-area ptb-40">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="full-col col-xl-7 col-lg-6 col-md-12">
-                        <div class="review-content" data-aos="fade-up" data-aos-duration="1200">
-                            <div class="content">
-                                <span class="sub-title">TESTIMONIALS</span>
-                                <h2>Our Clients Review</h2>
-                                <p>Distributors, Wholesellers & Stockists</p>
-                                <div class="review-slides owl-carousel owl-theme">
-                                    <div class="single-review-box">
-                                        <div class="rating">
-                                            <i class="bx bxs-star"></i>
-                                            <i class="bx bxs-star"></i>
-                                            <i class="bx bxs-star"></i>
-                                            <i class="bx bxs-star"></i>
-                                            <i class="bx bxs-star"></i>
-                                        </div>
-										<p>"Varaa liquid cleaners are of good quality, As a distributor my retail shop owners are happy to buy this from us at wholesale price."</p>
-                                        <div class="client-info">
-                                            <div class="d-flex align-items-center">
-                                                <img src="images/user-1.jpg" alt="image">
-                                                <div class="title">
-                                                    <h5>Rohan Patel</h5>
-                                                    <span>Distrobutor from Mumbai</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="full-col col-xl-5 col-lg-6 col-md-12">
-                        <div class="review-image" data-aos="fade-up" data-aos-duration="2000">
-                            <img src="images/varaa-cares-client-reviews.jpg" alt="Varaa Cares Product Reviews">
-                        </div>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="product-card reveal delay-2">
+        <div class="product-img pi-blue">🧹</div>
+        <div class="product-body">
+          <div class="product-name">Floor Cleanser</div>
+          <div class="product-desc">Deep cleans all floor types — marble, tiles, wood. Long-lasting fresh fragrance.</div>
+          <div class="product-badge">Home Care</div>
         </div>
-        <!-- End Testimonial Area -->
-
-        <!-- START CONTACT FORM AREA -->
-        <section id="contact" class="contact-area pt-40">
-            <div class="container-fluid">
-                <div class="contact-wrap">
-                    <div class="section-title" data-aos="fade-up" data-aos-duration="1200">
-                        <h2>Drop Us A Message for Any Query</h2>
-                        <p>We manufacture all kindsd of liquid solutions for Floor Cleaning, Toilet Cleaning, Bathroom Cleaning, Tile Wash Liquid, Dish wash liquid and other indoor and outdoor cleaning and hygiene care products. </p>
-                    </div>
-                    <h4 class="sent-notification"></h4>
-                    <form class="contact__form" method="post" data-aos="fade-up" data-aos-duration="1600" action="mail.php" id="contact__form">
-                        <div class="row">
-                            <div class="contact-form-col col-lg-6 col-sm-6">
-                                <div class="form-group">
-                                    <input type="text" name="name" id="name" class="form-control" required="" data-error="Please enter your name" placeholder="Your Name">
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                            </div>
-
-                            <div class="contact-form-col col-lg-6 col-sm-6">
-                                <div class="form-group">
-                                    <input type="email" name="email" id="email" class="form-control" required="" data-error="Please enter your email" placeholder="Your Email">
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                            </div>
-
-                            <div class="contact-form-col col-lg-6 col-sm-6">
-                                <div class="form-group">
-                                    <input type="text" name="phone_number" id="phone_number" required="" data-error="Please enter your number" class="form-control" placeholder="Your Phone">
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                            </div>
-
-                            <div class="contact-form-col col-lg-6 col-sm-6">
-                                <div class="form-group">
-                                    <input type="text" name="msg_subject" id="msg_subject" class="form-control" required="" data-error="Please enter your subject" placeholder="Your Subject">
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                            </div>
-
-                            <div class="contact-form-col col-lg-12 col-md-12">
-                                <div class="form-group">
-                                    <textarea name="message" class="form-control" id="message" cols="30" rows="8" required="" data-error="Write your message" placeholder="Your Message"></textarea>
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                            </div>
-
-                            <div class="contact-form-col col-lg-12 col-md-12">
-                                <button type="submit" class="default-btn icon four" onclick="sendEmail()">
-                                    <i class="ri-mail-check-line"></i>Send Message
-                                </button>
-                                <div id="msgSubmit" class="h3 text-center hidden"></div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <!-- Start Form Message -->
-                            <div class="col-12">
-                                <div class="text-center alert alert-success successform contact__msg" role="alert">
-                                    Your message was sent successfully.
-                                </div>
-                            </div>
-                            <!-- End Form Message -->
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
-        <!-- END CONTACT FORM AREA -->
-
-        <!-- Start Footer Area -->
-        <footer class="footer-area">
-            <div class="footer-top ptb-70">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-12 col-sm-12 pt-30">
-                            <div class="footer-logo">
-                                <a href="index.html"><img src="images/Varaa-Logo.png" alt=""></a>
-                            </div>
-                              <div class="textwidget white-color"><p>Hygiene and Cleaning Products Manufacturer, 100+ Stockist across Western India Region.</p>
-                              </div>
-                        </div>
-                        <div class="col-lg-3 col-md-12 col-sm-12 pt-30">
-                            <div class="footer-menu pl-50">
-                                <h3 class="footer-title">Our Products</h3>
-                                <ul class="site-map">
-                                    <li><a href="#products">Dish Wash Liquids</a></li>
-                                    <li><a href="#products">Floor Cleansers</a></li>
-                                    <li><a href="#products">Glass Cleansers</a></li>
-                                    <li><a href="#products">Hand Wash Liquids</a></li>
-                                    <li><a href="#products">Toilet Cleansers</a></li>
-									<li><a href="#products">White & Black Phenyles</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-12 col-sm-12 pt-30">
-                            <h3 class="footer-title">Contact Info</h3>
-                            <ul class="address-widget">
-                                
-                                <li>
-                                    <i class="bx bx-phone"></i>
-                                    <div class="desc">
-                                       <a href="tel:+919054115508">+91 90541 15508</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <i class="bx bx-envelope"></i>
-                                    <div class="desc">
-                                        <a href="mailto:info@varaacares.com">info@varaacares.com</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <i class="bx bx-time"></i>
-                                    <div class="desc time">
-                                        Office Hours: 9 AM - 6 PM  
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-3 col-md-12 col-sm-12 pt-30">
-                            <h3 class="footer-title">Address</h3>
-                            <p class="widget-desc white-color">17, SHANTHI DWAR CHS-D, Shantivan, Near National Park, Western Express Highway, Borivali East, Mumbai, 400066</p>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="container-fluid">                    
-                    <div class="row y-middle">
-                        <div class="col-lg-4 text-lg-end text-center order-last">
-                            <ul class="footer-social">  
-                              <li>
-                                  <a href="#"><span><i class="fa fa-facebook"></i></span></a> 
-                              </li>
-
-                              <li>
-                                  <a href="#"><span><i class="fa fa-linkedin"></i></span></a> 
-                              </li>
-
-                              <li> 
-                                  <a href="#"><span><i class="fa fa-instagram"></i></span></a> 
-                              </li>
-
-                          </ul>
-                        </div>
-                        <div class="col-lg-8">
-                            <div class="copyright text-lg-start text-center">
-                                <p>© 2024 Varaa Cares - All Rights Reserved. <!--Website built by Growth Waves.--></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- End Footer Area -->
-
-        <!-- Start Go Top Area -->
-        <div class="go-top">
-            <i class="bx bx-chevrons-up"></i>
+      </div>
+      <div class="product-card reveal delay-3">
+        <div class="product-img pi-amber">🪟</div>
+        <div class="product-body">
+          <div class="product-name">Glass Cleanser</div>
+          <div class="product-desc">Streak-free shine on glass, mirrors &amp; windows. Fast-drying formula.</div>
+          <div class="product-badge">Home Care</div>
         </div>
-        <!-- End Go Top Area -->
+      </div>
+      <div class="product-card reveal delay-1">
+        <div class="product-img pi-pink">🖐️</div>
+        <div class="product-body">
+          <div class="product-name">Hand Wash Liquid</div>
+          <div class="product-desc">Dermatologically tested. Kills 99.9% germs with moisturizing formula.</div>
+          <div class="product-badge">Personal Hygiene</div>
+        </div>
+      </div>
+      <div class="product-card reveal delay-2">
+        <div class="product-img pi-teal">🚽</div>
+        <div class="product-body">
+          <div class="product-name">Toilet Cleanser</div>
+          <div class="product-desc">Powerful formula removes stains, limescale and odors instantly.</div>
+          <div class="product-badge">Bathroom Care</div>
+        </div>
+      </div>
+      <div class="product-card reveal delay-3">
+        <div class="product-img pi-coral">🧴</div>
+        <div class="product-body">
+          <div class="product-name">White &amp; Black Phenyle</div>
+          <div class="product-desc">Industrial-grade disinfectant effective against bacteria, fungi &amp; viruses.</div>
+          <div class="product-badge">Industrial Care</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <!-- JQUERY.SLIM.MIN.JS -->
-        <script src="js/jquery.slim.min.js"></script>
-        <!-- POPPER JS -->
-        <script src="js/popper.min.js"></script>
-        <!-- BOOTSTRAP JS -->
-        <script src="js/bootstrap.min.js"></script>
-        <!-- WOW JS -->
-        <script src="js/wow.min.js"></script>
-        <!-- OWL CAROUSEL JS -->
-        <script src="js/owl.carousel.js"></script>
-        <!-- MAGNIFIC POPUP JS -->
-        <script src="js/magnific-popup.min.js"></script>
-        <!-- NICE SELECT JS -->
-        <script src="js/jquery.nice-select.min.js"></script>
-        <!-- APPEAR JS --> 
-        <script src="js/jquery.appear.js"></script>
-        <!-- ODOMETER JS --> 
-        <script src="js/odometer.min.js"></script>
-        <!-- Data Aos JS --> 
-        <script src="js/aos.js"></script>
-        <!-- MAIN JS -->
-        <script src="js/main.js"></script>
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-        <script type="text/javascript">
-            function sendEmail(){
-               var name = $("#name");
-               var email = $("#email");
-               var phone_number = $("#phone_number");
-               var msg_subject = $("#msg_subject");
-               var message = $("#message");
+<!-- ABOUT -->
+<section class="section about" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div>
+        <div class="section-tag reveal">Who We Are</div>
+        <h2 class="section-title reveal">Protecting surroundings<br>&amp; belongings since 2002</h2>
+        <p class="about-lead reveal">Varaa is a leading brand in cosmetic &amp; personal care products. Manufactured by <strong>Green Cross Health Innovation</strong>, our products deliver finest hygiene and sanitization while caring for your health, skin, body, and environment. Stay Clean, Stay Safe!</p>
+        <div class="about-features reveal">
+          <div class="feat"><span class="feat-icon">✅</span> Easy to use</div>
+          <div class="feat"><span class="feat-icon">🌿</span> Fresh fragrances</div>
+          <div class="feat"><span class="feat-icon">🛡️</span> Safe chemicals</div>
+          <div class="feat"><span class="feat-icon">📦</span> Easy to store</div>
+          <div class="feat"><span class="feat-icon">🚚</span> Quick delivery</div>
+          <div class="feat"><span class="feat-icon">⭐</span> 20 yrs experience</div>
+        </div>
+        <div class="about-cards-row reveal" style="margin-top:1.5rem;">
+          <div class="mini-card">
+            <div class="mini-num">100+</div>
+            <div class="mini-label">Pin Codes Covered</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-num">5000L</div>
+            <div class="mini-label">Daily Capacity</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual reveal">
+        <div class="about-card-main">
+          <div class="about-big-num">20</div>
+          <div class="about-big-text">Years of Trust</div>
+          <div class="about-big-sub">Protecting homes, hospitals &amp; hotels across Western India</div>
+          <div class="location-cards">
+            <div class="loc-card">
+              <div class="loc-title">📍 Mumbai Office</div>
+              <div class="loc-text">17, Shanthi Dwar CHS-D, Shantivan, Borivali East, Mumbai 400066</div>
+            </div>
+            <div class="loc-card">
+              <div class="loc-title">🏭 Manufacturing</div>
+              <div class="loc-text">Plot 57/I, GIDC Phase 1, Vapi, Gujarat 396195</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-               if(isNotEmpty(name) && isNotEmpty(email) && isNotEmpty(phone_number) && isNotEmpty(msg_subject) && isNotEmpty(message)){
+<!-- TESTIMONIALS -->
+<section class="section testimonials" id="reviews">
+  <div class="section-inner">
+    <div class="section-header center">
+      <div class="section-tag reveal">Testimonials</div>
+      <h2 class="section-title reveal">What our clients say</h2>
+      <p class="section-sub reveal">Distributors, Wholesalers &amp; Stockists across Western India</p>
+    </div>
+    <div class="test-grid">
+      <div class="test-card reveal delay-1">
+        <div class="stars">★★★★★</div>
+        <p class="test-quote">"Varaa liquid cleaners are of very good quality. As a distributor, my retail shop owners are always happy to buy this at wholesale price."</p>
+        <div class="test-author">
+          <div class="avatar">RP</div>
+          <div>
+            <div class="author-name">Rohan Patel</div>
+            <div class="author-role">Distributor, Mumbai</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card reveal delay-2">
+        <div class="stars">★★★★★</div>
+        <p class="test-quote">"We've been stocking Varaa products for 5 years now. Customers love the fragrances and the pricing is very competitive in the market."</p>
+        <div class="test-author">
+          <div class="avatar">SM</div>
+          <div>
+            <div class="author-name">Suresh Mehta</div>
+            <div class="author-role">Wholesaler, Surat</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card reveal delay-3">
+        <div class="stars">★★★★★</div>
+        <p class="test-quote">"Reliable supply chain, consistent quality and excellent support from the Varaa team. Highly recommended for bulk buyers across Gujarat."</p>
+        <div class="test-author">
+          <div class="avatar">PD</div>
+          <div>
+            <div class="author-name">Priya Desai</div>
+            <div class="author-role">Stockist, Vapi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-                $.ajax({
-                    url:'mail.php',
-                    method: 'POST',
-                    datatype:'json',
-                    data:{
-                        name:name.val(),
-                        email:email.val(),
-                        phone_number:phone_number.val(),
-                        msg_subject:msg_subject.val(),
-                        message:message.val()
+<!-- INSTAGRAM CTA -->
+<div class="insta-cta">
+  <div class="insta-inner">
+    <h3>📸 Follow us on Instagram</h3>
+    <p>See our latest products, offers, and updates on Instagram @Varaa.Cares</p>
+    <button class="insta-btn" onclick="window.open('https://www.instagram.com/varaa.cares','_blank')">
+      @varaa.cares →
+    </button>
+  </div>
+</div>
 
-                    },
-                    success:function(response){
-                        $('#contact__form')[0].reset();
-                    } 
-                })
-               }
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="section-header center">
+      <div class="section-tag reveal">Get in Touch</div>
+      <h2 class="section-title reveal">Drop us a message</h2>
+      <p class="section-sub reveal">We'll get back to you within 24 hours · Office hours 9 AM – 6 PM</p>
+    </div>
+    <div class="contact-grid">
+      <div class="form-wrap reveal">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input class="form-input" type="text" placeholder="Rohan Patel" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input class="form-input" type="email" placeholder="rohan@example.com" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Phone Number</label>
+            <input class="form-input" type="tel" placeholder="+91 99999 99999" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Subject</label>
+            <input class="form-input" type="text" placeholder="Bulk order enquiry" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-input" placeholder="Tell us about your requirements…"></textarea>
+        </div>
+        <button class="submit-btn" onclick="this.textContent='Message Sent! ✓';this.style.background='#0F6E56';">
+          Send Message ✈
+        </button>
+      </div>
+      <div class="contact-info reveal delay-2">
+        <div class="info-item">
+          <div class="info-icon-wrap">📞</div>
+          <div>
+            <div class="info-label">Call Us</div>
+            <div class="info-val">+91 90541 15508</div>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon-wrap">✉️</div>
+          <div>
+            <div class="info-label">Email Us</div>
+            <div class="info-val">info@varaacares.com</div>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon-wrap">🕘</div>
+          <div>
+            <div class="info-label">Office Hours</div>
+            <div class="info-val">9 AM – 6 PM, Mon–Sat</div>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon-wrap">📍</div>
+          <div>
+            <div class="info-label">Head Office</div>
+            <div class="info-val" style="font-size:13px;font-weight:400;line-height:1.5;">17, Shanthi Dwar CHS-D,<br>Borivali East, Mumbai 400066</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">VARAA <span>CARES</span></div>
+        <p class="footer-desc">Hygiene and Cleaning Products Manufacturer. 100+ Stockists across Western India. Protecting surroundings since 2002. Manufactured by Green Cross Health Innovation.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Products</div>
+        <ul class="footer-links">
+          <li><a href="#products">Dish Wash Liquid</a></li>
+          <li><a href="#products">Floor Cleanser</a></li>
+          <li><a href="#products">Glass Cleanser</a></li>
+          <li><a href="#products">Hand Wash</a></li>
+          <li><a href="#products">Toilet Cleanser</a></li>
+          <li><a href="#products">Phenyle</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="https://www.instagram.com/varaa.cares" target="_blank">Instagram</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Locations</div>
+        <ul class="footer-links">
+          <li><a href="#">Mumbai Office</a></li>
+          <li><a href="#">Vapi Manufacturing</a></li>
+          <li><a href="#">Western India</a></li>
+          <li><a href="#">100+ Pin Codes</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2024 Varaa Cares — All rights reserved. Manufactured by Green Cross Health Innovation.</div>
+      <div class="footer-social">
+        <a class="social-btn" href="#" title="Facebook">f</a>
+        <a class="social-btn" href="https://www.instagram.com/varaa.cares" target="_blank" title="Instagram">in</a>
+        <a class="social-btn" href="#" title="LinkedIn">li</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
-            }
-        </script>
+<script>
+// Scroll-triggered reveals
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-</body></html>
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Counter animation
+function animateCount(el, target, suffix) {
+  let start = 0;
+  const dur = 1800;
+  const step = Math.ceil(target / (dur / 16));
+  const timer = setInterval(() => {
+    start += step;
+    if(start >= target) { start = target; clearInterval(timer); }
+    el.textContent = start.toLocaleString() + suffix;
+  }, 16);
+}
+
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      const nums = e.target.querySelectorAll('[data-target]');
+      nums.forEach(n => {
+        const t = parseInt(n.getAttribute('data-target'));
+        animateCount(n, t, '+');
+      });
+      statsObserver.unobserve(e.target);
+    }
+  });
+}, {threshold:0.3});
+const statsEl = document.querySelector('.stats');
+if(statsEl) statsObserver.observe(statsEl);
+</script>
+</body>
+</html>
